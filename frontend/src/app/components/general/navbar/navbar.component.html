@@ -1,5 +1,5 @@
 <!-- Desktop Navbar: nur sichtbar auf md+ -->
-<div class="hidden md:block">
+<div class="hidden lg:block">
   <app-navbar-desktop
     [navtabs]="navtabs$ | async"
     (tabSelected)="selectTab($event)">
@@ -7,7 +7,7 @@
 </div>
 
 <!-- Mobile Navbar: nur sichtbar unter md -->
-<div class="block md:hidden">
+<div class="block lg:hidden">
   <app-navbar-mobile
     [navtabs]="navtabs$ | async"
     (tabSelected)="selectTab($event)">
