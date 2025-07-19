@@ -1,55 +1,59 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { NavTab } from '../../../model/navigation.model';
 import { NavigationService } from '../../../service/navigation.service';
+import { BehaviorSubject } from 'rxjs';
+import { NavbarMobileComponent } from '../navbar-mobile/navbar-mobile.component';
+import { AsyncPipe } from '@angular/common';
+import { NavbarDesktopComponent } from '../navbar-desktop/navbar-desktop.component';
 
 @Component({
   selector: 'app-navbar',
+  imports: [NavbarMobileComponent, AsyncPipe, NavbarDesktopComponent],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
-  imports: [NgClass],
+  styleUrl: './navbar.component.scss',
 })
-export class Navbar implements OnInit {
-  isMenuOpen = false;
-  navtabs?: NavTab[];
+export class NavbarComponent implements OnInit {
+  navtabs$ = new BehaviorSubject<NavTab[]>([]);
+  private _navtabs: NavTab[] = [];
 
   constructor(private readonly navigationService: NavigationService) {}
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
-
-  @HostListener('document:click', ['$event'])
-  closeMenuOnOutsideClick(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    if (!target.closest('#sideMenu') && !target.closest('#hamburger')) {
-      this.isMenuOpen = false;
-    }
-  }
-
-  ngOnInit() {
-    this.navigationService.navtabs$.subscribe((navtabs) => {
-      this.navtabs = navtabs;
+  ngOnInit(): void {
+    this.navtabs$ = this.navigationService.navtabs$;
+    this.navtabs$.subscribe((navtabs) => {
+      this._navtabs = navtabs;
     });
   }
 
-  selectTab(tab: NavTab, subtabIndex?: number): void {
-    if (!tab.submenus) {
-      // Tab ohne Submenus
-      this.navigationService.setSelectedTab(tab.title);
-      this.isMenuOpen = false;
-    } else if (subtabIndex != null) {
-      // Subtab wurde gewählt
-      this.navigationService.setSelectedTab(tab.title, subtabIndex);
-      this.isMenuOpen = false;
+  selectTab(event: NavTabSelectedEvent): void {
+    if (!event.tab.submenus) {
+      // Tab ohne Submenus gewählt => Navigation
+      this.navigationService.setSelectedTab(
+        event.tab.title,
+        undefined,
+        event.desktopBar,
+      );
+    } else if (event.subtabIndex != null) {
+      // Subtab wurde gewählt => Navigation
+      this.navigationService.setSelectedTab(
+        event.tab.title,
+        event.subtabIndex,
+        event.desktopBar,
+      );
     } else {
-      // Navtab mit subtabs aufklappen
+      // Navtab mit Subtabs aufklappen => Keine Navigation
       // Alle anderen einklappen
-      for (let tabInList of this.navtabs!) {
+      for (let tabInList of this._navtabs!) {
         tabInList.expanded = false;
       }
       // Gewählten Tab aufklappen
-      tab.expanded = true;
+      event.tab.expanded = true;
     }
   }
 }
+
+export type NavTabSelectedEvent = {
+  tab: NavTab;
+  subtabIndex?: number;
+  desktopBar?: boolean;
+};
