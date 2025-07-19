@@ -1,12 +1,10 @@
-<!-- Desktop Navbar: nur sichtbar auf md+ -->
-<div class="hidden lg:block">
+<div class="hidden lg:block" #submenusBox>
   <app-navbar-desktop
     [navtabs]="navtabs$ | async"
     (tabSelected)="selectTab($event)">
   </app-navbar-desktop>
 </div>
 
-<!-- Mobile Navbar: nur sichtbar unter md -->
 <div class="block lg:hidden">
   <app-navbar-mobile
     [navtabs]="navtabs$ | async"
