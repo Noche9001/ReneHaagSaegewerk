@@ -12,41 +12,43 @@ export class NavigationService {
 
   constructor(private readonly router: Router) {}
 
-  public setSelectedTab(title: string, submenuIndex?: number) {
-    let oldSelectedTab = this.navtabs.find(
-      (navtab) => navtab.selected === true,
-    );
-    let selectedTab = this.navtabs.find((navtab) => navtab.title === title);
-    let selectedSubTab;
+  public setSelectedTab(
+    title: string,
+    submenuIndex?: number,
+    desktopBar: boolean = false,
+  ) {
+    const oldTab = this.navtabs.find((tab) => tab.selected);
+    const newTab = this.navtabs.find((tab) => tab.title === title);
 
-    // Zuletzt gewählten Tab unselecten und einklappen
-    if (!!oldSelectedTab) {
-      oldSelectedTab.selected = false;
+    if (!newTab) {
+      console.error('Fehler beim Tabselect: Kein Tab wurde übergeben');
+      return;
+    }
 
-      if (!!oldSelectedTab.submenus) {
-        oldSelectedTab.expanded = false;
-        let oldSelectedSubTab = oldSelectedTab.submenus.find(
-          (navtab) => navtab.selected === true,
-        );
-        if (!!oldSelectedSubTab) {
-          oldSelectedSubTab!.selected = false;
-        }
+    // Alten Tab und Subtabs unselecten und einklappen
+    if (oldTab) {
+      oldTab.selected = false;
+      oldTab.submenus?.forEach((sub) => (sub.selected = false));
+      if (oldTab != newTab) {
+        oldTab.expanded = false;
       }
     }
 
-    selectedTab!.selected = true;
+    // Neuen Tab & Subtab selecten
+    newTab.selected = true;
+    let selectedSubTab;
 
-    if (submenuIndex != null) {
-      selectedTab!.expanded = true;
-      selectedSubTab = selectedTab!.submenus![submenuIndex];
+    if (submenuIndex != null && newTab.submenus?.[submenuIndex]) {
+      selectedSubTab = newTab.submenus[submenuIndex];
       selectedSubTab.selected = true;
     }
 
+    if (desktopBar) {
+      newTab.expanded = false;
+    }
+
     this._navtabs$.next(this.navtabs);
-
-    const targetTab = selectedSubTab ?? selectedTab!;
-
-    this.navigate(targetTab);
+    this.navigate(selectedSubTab ?? newTab);
   }
 
   navigate(tab: NavTab) {

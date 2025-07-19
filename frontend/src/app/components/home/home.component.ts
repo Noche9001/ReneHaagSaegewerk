@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Navbar } from '../general/navbar/navbar.component';
 import { NavigationService } from '../../service/navigation.service';
+import { NavbarComponent } from '../general/navbar/navbar.component';
 
 @Component({
   selector: 'app-home',
-  imports: [Navbar],
+  imports: [NavbarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

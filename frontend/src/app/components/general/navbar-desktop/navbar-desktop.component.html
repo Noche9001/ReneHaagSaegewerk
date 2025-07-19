@@ -1,0 +1,60 @@
+<div
+  class="w-full bg-white shadow-md fixed top-0 left-0 h-16 z-10 hidden md:flex items-center justify-between px-4">
+
+  <!-- Tabs (zentriert innerhalb flex-grow div + center) -->
+  <div class="flex flex-grow items-center justify-center space-x-6">
+    @for (navtab of navtabs; track $index) {
+      <div class="relative h-full" [attr.aria-label]="'Select Tab ' + navtab.title">
+
+        <!-- Main tab text -->
+        <div class="h-full flex items-center">
+          <button class="flex items-center" (click)="emit(navtab)"
+                  [ngClass]="{
+                    'border-2 px-[4px] border-solid': navtab.selected
+                  }">
+            <span
+              class="text-xl font-semibold"
+              [id]="navtab.title + '-navigation-desktop'">
+              {{ navtab.title }}
+            </span>
+
+            @if (navtab.submenus != null) {
+              <img
+                src="assets/navigation/submenutriangle.svg"
+                alt="Expand Menu Point"
+                class="w-[12px] h-[12px] pl-[4px]"/>
+            }
+          </button>
+        </div>
+
+        <!-- Submenu -->
+        @if (navtab.submenus != null && navtab.expanded === true) {
+          <div
+            class="absolute left-0 top-full min-w-full bg-white flex flex-col z-20 shadow-[0_8px_16px_-4px_rgba(0,0,0,0.3)]">
+            <ul>
+              @for (subtab of navtab.submenus; track $index) {
+                <li
+                  class="px-4 py-2 text-sm whitespace-nowrap hover:bg-gray-100 text-center"
+                  [attr.aria-label]="'Select Subtab ' + subtab.title"
+                  (click)="emit(navtab, $index)">
+                  <button
+                    [ngClass]="{
+                      'border-b-2 border-solid border-black px-[4px]': subtab.selected
+                    }">
+                    {{ subtab.title }}
+                  </button>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Logo (rechts) -->
+  <img
+    src="assets/general/Logo.svg"
+    alt="Rene Haag Sägewerk Logo"
+    class="w-[160px] h-[80px] object-contain max-w-none"/>
+</div>
