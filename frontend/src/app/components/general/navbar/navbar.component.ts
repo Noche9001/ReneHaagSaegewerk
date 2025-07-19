@@ -22,11 +22,11 @@ export class NavbarComponent implements OnInit {
   navtabs$ = new BehaviorSubject<NavTab[]>([]);
   private _navtabs: NavTab[] = [];
 
-  @ViewChild('submenusBox') submenusBox!: ElementRef<HTMLElement>;
+  @ViewChild('navbarDesktop') navbarDesktop!: ElementRef<HTMLElement>;
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    const el = this.submenusBox?.nativeElement;
+    const el = this.navbarDesktop?.nativeElement;
     if (el && this.isElementVisible(el) && !el.contains(event.target as Node)) {
       this.navigationService.closeSubtabs();
     }
