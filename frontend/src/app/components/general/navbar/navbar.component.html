@@ -26,7 +26,7 @@
     <div
       class="fixed inset-0 bg-black/50 z-15 transition-opacity duration-300"
       (click)="toggleMenu()"
-      aria-expanded="{{isMenuOpen}}"
+      [attr.aria-expanded]="isMenuOpen"
     ></div>
 
   }
@@ -43,7 +43,7 @@
   >
     <!-- Side Menu Content -->
     <div class="pt-16 px-6 flex flex-col items-center text-center space-y-6 h-full overflow-y-auto text"
-         aria-hidden="{{!isMenuOpen}}">
+         [attr.aria-hidden]="!isMenuOpen">
 
       <!-- Logo in Menu -->
       <img
@@ -60,7 +60,7 @@
           'border-2 px-[4px] border-solid': navtab.selected
         }"
           (click)="selectTab(navtab)"
-          aria-label="Select Tab {{navtab.title}}"
+          [attr.aria-label]="'Select Tab ' + navtab.title"
         >
           <a
             class="text-xl font-semibold text-center"
@@ -88,7 +88,7 @@
                 [ngClass]="{
                 'border-b-2 border-solid border-black px-[4px]': subtab.selected
               }"
-                aria-label="Select Subtab {{navtab.title}}"
+                [attr.aria-label]="'Select Subtab ' + subtab.title"
               >
                 <a
                   class="text-md font-semibold text-center"
