@@ -55,6 +55,13 @@ export class NavigationService {
     this.router.navigate([tab.route]);
   }
 
+  closeSubtabs() {
+    for (const tab of this.navtabs) {
+      tab.expanded = false;
+    }
+    this._navtabs$.next(this.navtabs);
+  }
+
   get navtabs$() {
     return this._navtabs$;
   }

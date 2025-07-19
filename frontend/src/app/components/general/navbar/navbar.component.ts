@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NavTab } from '../../../model/navigation.model';
 import { NavigationService } from '../../../service/navigation.service';
 import { BehaviorSubject } from 'rxjs';
@@ -15,6 +21,16 @@ import { NavbarDesktopComponent } from '../navbar-desktop/navbar-desktop.compone
 export class NavbarComponent implements OnInit {
   navtabs$ = new BehaviorSubject<NavTab[]>([]);
   private _navtabs: NavTab[] = [];
+
+  @ViewChild('navbarDesktop') navbarDesktop!: ElementRef<HTMLElement>;
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const el = this.navbarDesktop?.nativeElement;
+    if (el && this.isElementVisible(el) && !el.contains(event.target as Node)) {
+      this.navigationService.closeSubtabs();
+    }
+  }
 
   constructor(private readonly navigationService: NavigationService) {}
 
@@ -49,6 +65,15 @@ export class NavbarComponent implements OnInit {
       // Gewählten Tab aufklappen
       event.tab.expanded = true;
     }
+  }
+
+  private isElementVisible(element: HTMLElement): boolean {
+    const style = window.getComputedStyle(element);
+
+    const isDisplayed = style.display !== 'none';
+    const isVisible = style.visibility !== 'hidden' && style.opacity !== '0';
+
+    return isDisplayed && isVisible;
   }
 }
 
