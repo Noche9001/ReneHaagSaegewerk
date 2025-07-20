@@ -7,7 +7,9 @@ import {
 import express from 'express';
 import { join } from 'node:path';
 
-const browserDistFolder = join(import.meta.dirname, '../browser');
+import path from 'node:path';
+
+const browserDistFolder = path.join(process.cwd(), 'dist/frontend');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
