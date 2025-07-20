@@ -35,9 +35,10 @@
           "defaultConfiguration": "production"
         },
         "server": {
-          "builder": "@angular/build:server",
+          "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "server": "src/main.server.ts",
+            "outputPath": "dist/frontend-server",
+            "main": "src/main.server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -46,9 +47,15 @@
             ]
           },
           "configurations": {
-            "production": {},
+            "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true
+            },
             "development": {
-              "sourceMap": true
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
             }
           },
           "defaultConfiguration": "production"
