@@ -1,15 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
   "projects": {
     "frontend": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -17,41 +11,21 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/frontend/browser",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public",
-                "output": "/"
-              },
               "src/assets",
               "src/favicon.ico"
             ],
             "styles": [
               "src/styles.scss"
-            ]
+            ],
+            "optimization": true,
+            "outputHashing": "all"
           },
           "configurations": {
-            "production": {
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
-              ]
-            },
+            "production": {},
             "development": {
               "optimization": false,
               "sourceMap": true,
@@ -63,8 +37,7 @@
         "server": {
           "builder": "@angular/build:server",
           "options": {
-            "outputPath": "dist/frontend/server",
-            "main": "src/main.server.ts",
+            "server": "src/main.server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -73,12 +46,8 @@
             ]
           },
           "configurations": {
-            "production": {
-              "optimization": true,
-              "sourceMap": false
-            },
+            "production": {},
             "development": {
-              "optimization": false,
               "sourceMap": true
             }
           },
@@ -95,31 +64,8 @@
             }
           },
           "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public",
-                "output": "/"
-              }
-            ],
-            "styles": [
-              "src/styles.scss"
-            ]
-          }
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "a817316f-3ff4-4ea0-bd87-bcf5d075bdff"
   }
 }
