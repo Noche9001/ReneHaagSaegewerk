@@ -5,10 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:ssr": "ng build --configuration production && ng build --configuration production --ssr",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr": "node dist/server/server.mjs"
+    "serve:ssr:frontend": "node dist/frontend/server/server.mjs"
   },
   "prettier": {
     "overrides": [
@@ -25,14 +24,14 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "20.1.2",
-    "@angular/compiler": "20.1.2",
-    "@angular/core": "20.1.2",
-    "@angular/forms": "20.1.2",
-    "@angular/platform-browser": "20.1.2",
-    "@angular/platform-server": "20.1.2",
-    "@angular/router": "20.1.2",
-    "@angular/ssr": "20.1.2",
+    "@angular/common": "^20.0.0",
+    "@angular/compiler": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@angular/forms": "^20.0.0",
+    "@angular/platform-browser": "^20.0.0",
+    "@angular/platform-server": "^20.0.0",
+    "@angular/router": "^20.0.0",
+    "@angular/ssr": "^20.0.5",
     "@tailwindcss/postcss": "^4.1.11",
     "express": "^5.1.0",
     "postcss": "^8.5.6",
@@ -43,9 +42,9 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "20.1.2",
-    "@angular/cli": "20.0.5",
-    "@angular/compiler-cli": "20.1.2",
+    "@angular/build": "^20.0.5",
+    "@angular/cli": "^20.0.5",
+    "@angular/compiler-cli": "^20.0.0",
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
