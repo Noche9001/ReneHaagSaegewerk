@@ -2,14 +2,14 @@
   "name": "frontend",
   "version": "0.0.0",
   "scripts": {
-  "ng": "ng",
-  "start": "ng serve",
-  "build": "ng build",
-  "build:ssr": "ng build --configuration production && ng build --configuration production --ssr",
-  "watch": "ng build --watch --configuration development",
-  "test": "ng test",
-  "serve:ssr": "node dist/server/server.mjs"
-},
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "build:ssr": "ng run frontend:build:production && angular ssr",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "serve:ssr": "node dist/ssr/server.mjs"
+  },
   "prettier": {
     "overrides": [
       {
@@ -19,9 +19,7 @@
         }
       }
     ],
-    "plugins": [
-      "prettier-plugin-tailwindcss"
-    ]
+    "plugins": ["prettier-plugin-tailwindcss"]
   },
   "private": true,
   "dependencies": {
@@ -43,7 +41,6 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "20.1.2",
     "@angular/cli": "20.1.2",
     "@angular/compiler-cli": "20.1.2",
     "@types/express": "^5.0.1",
