@@ -12,7 +12,7 @@ const browserDistFolder = path.join(process.cwd(), 'dist/frontend');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-console.log('Starting Angular SSR server...');
+console.log('Starting Angular SSR server cap...');
 
 /**
  * Beispiel: eigene API-Endpoints hier definieren (optional)
