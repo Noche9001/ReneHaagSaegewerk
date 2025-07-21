@@ -48,7 +48,9 @@ app.use((req, res, next) => {
 /**
  * Server starten, wenn das Modul direkt ausgeführt wird
  */
+console.log("here");
 if (isMainModule(import.meta.url)) {
+  console.log("here not");
   const port = process.env['PORT'] ? Number(process.env['PORT']) : 4000;
 
   app.listen(port, (error) => {
