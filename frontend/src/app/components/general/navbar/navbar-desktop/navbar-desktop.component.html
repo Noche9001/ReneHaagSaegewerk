@@ -1,6 +1,6 @@
 <nav>
   <div
-    class="w-full bg-white shadow-md fixed top-0 left-0 h-16 z-10 hidden md:flex items-center justify-between px-4">
+    class="w-full bg-white shadow-md fixed top-0 left-0 h-18 z-10 hidden md:flex items-center justify-between px-4">
 
     <!-- Tabs (zentriert innerhalb flex-grow div + center) -->
     <div class="flex flex-grow items-center justify-center space-x-6">
@@ -14,14 +14,14 @@
                     'border-2 px-[4px] border-solid': navtab.selected
                   }">
             <span
-              class="text-xl font-semibold hover:text-gray-600"
+              class="text-2xl font-semibold hover:text-gray-600"
               [id]="navtab.title + '-navigation-desktop'">
               {{ navtab.title }}
             </span>
 
               @if (navtab.submenus != null) {
                 <img
-                  src="assets/navigation/submenutriangle.svg"
+                  src="../../../../../assets/navigation/submenutriangle.svg"
                   alt="Expand Menu Point"
                   class="w-[12px] h-[12px] pl-[4px]"/>
               }
@@ -35,7 +35,7 @@
               <ul>
                 @for (subtab of navtab.submenus; track $index) {
                   <li
-                    class="px-4 py-2 text-sm whitespace-nowrap hover:bg-gray-100 text-center"
+                    class="px-4 py-2 text-sm whitespace-nowrap hover:bg-gray-100 text-left"
                     [attr.aria-label]="'Select Subtab ' + subtab.title"
                     (click)="emit(navtab, $index)">
                     <button
@@ -55,7 +55,7 @@
 
     <!-- Logo (rechts) -->
     <img
-      src="assets/general/Logo.svg"
+      src="../../../../../assets/general/Logo.png"
       alt="Rene Haag Sägewerk Logo"
       class="w-[160px] h-[80px] object-contain max-w-none"/>
   </div>

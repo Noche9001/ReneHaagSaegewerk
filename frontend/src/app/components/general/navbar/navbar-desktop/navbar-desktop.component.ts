@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { NavTab } from '../../../model/navigation.model';
-import { NavTabSelectedEvent } from '../navbar/navbar.component';
+import { NavTab } from '../../../../model/navigation.model';
+import { NavTabSelectedEvent } from '../navbar.component';
 
 @Component({
   selector: 'app-navbar-desktop',

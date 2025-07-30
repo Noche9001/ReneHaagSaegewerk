@@ -8,9 +8,9 @@ import {
 import { NavTab } from '../../../model/navigation.model';
 import { NavigationService } from '../../../service/navigation.service';
 import { BehaviorSubject } from 'rxjs';
-import { NavbarMobileComponent } from '../navbar-mobile/navbar-mobile.component';
+import { NavbarMobileComponent } from './navbar-mobile/navbar-mobile.component';
 import { AsyncPipe } from '@angular/common';
-import { NavbarDesktopComponent } from '../navbar-desktop/navbar-desktop.component';
+import { NavbarDesktopComponent } from './navbar-desktop/navbar-desktop.component';
 
 @Component({
   selector: 'app-navbar',
