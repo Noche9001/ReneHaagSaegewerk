@@ -50,7 +50,7 @@ export const NAV_TABS: NavTab[] = [
     submenus: [
       {
         title: 'ÜBER MICH',
-        route: '/unternehmen/ueberuns',
+        route: '/unternehmen/uebermich',
       },
       {
         title: 'GALERIE',
