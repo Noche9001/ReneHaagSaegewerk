@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { UeberMichComponent } from './components/ueber-mich/ueber-mich.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   // HOME
   { path: 'home', component: HomeComponent },
   // LEISTUNGEN
@@ -13,9 +15,9 @@ export const routes: Routes = [
   { path: 'produkte/brennholz', component: HomeComponent },
   { path: 'produkte/sonstiges', component: HomeComponent },
   // UNTERNEHMEN
-  { path: 'unternehmen/ueberuns', component: HomeComponent },
+  { path: 'unternehmen/uebermich', component: UeberMichComponent },
   { path: 'unternehmen/galerie', component: HomeComponent },
   // KONTAKT
   { path: 'kontakt', component: HomeComponent },
-  { path: '**', redirectTo: 'home' },
+  // { path: '**', redirectTo: 'home' },
 ];
