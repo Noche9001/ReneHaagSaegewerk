@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { NavigationService } from '../../service/navigation.service';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-contact.component',
-  imports: [ContactFormComponent],
+  imports: [ContactFormComponent, NgOptimizedImage],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })
