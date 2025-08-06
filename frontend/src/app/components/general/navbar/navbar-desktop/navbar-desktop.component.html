@@ -3,7 +3,7 @@
     class="w-full bg-white shadow-md sticky top-0 left-0 h-18 z-10 hidden md:flex items-center justify-between px-4">
 
     <!-- Tabs (zentriert innerhalb flex-grow div + center) -->
-    <div class="flex flex-grow items-center justify-center space-x-6">
+    <div class="flex flex-grow items-center space-x-6 pl-4">
       @for (navtab of navtabs; track $index) {
         <div class="relative h-full" [attr.aria-label]="'Select Tab ' + navtab.title">
 
