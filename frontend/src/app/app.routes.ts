@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { UeberMichComponent } from './components/ueber-mich/ueber-mich.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,7 +18,7 @@ export const routes: Routes = [
   { path: 'produkte/sonstiges', component: HomeComponent },
   // UNTERNEHMEN
   { path: 'unternehmen/uebermich', component: UeberMichComponent },
-  { path: 'unternehmen/galerie', component: HomeComponent },
+  { path: 'unternehmen/galerie', component: GalleryComponent },
   // KONTAKT
   { path: 'kontakt', component: ContactComponent },
   // { path: '**', redirectTo: 'home' },
